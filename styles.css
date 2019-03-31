@@ -1,0 +1,18 @@
+.frame {
+    border: 3px double black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.pane {
+    margin-top: 10px;
+}
+
+.rad {
+    cursor: pointer;
+    transition: visibility .5s, opacity .5s, height .5s;
+}
+
+.rad:hover {
+    background-color: aqua;
+}

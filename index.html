@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Karen</title>
+    <meta name="description" content="Klados branch labeler">
+    <meta name="author" content="Fudandori">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts - Geostar Fill -->
+    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyBbUi9-EkMpp-HbKDYz1FdMFmo91LmkLlM",
+            authDomain: "karen-c3a48.firebaseapp.com",
+            databaseURL: "https://karen-c3a48.firebaseio.com",
+            projectId: "karen-c3a48",
+            storageBucket: "karen-c3a48.appspot.com",
+            messagingSenderId: "227651580103"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container-fluid" style="min-width: 800px">
+        <div class="row justify-content-center">
+            <div class="pane col-7 col-lg-6">
+                <div class="frame col-12" id="left">
+                    <h3>Primera opción</h3>
+                </div>
+            </div>
+            <div class="pane col-7 col-lg-6">
+                <div class="frame col-12" id="right">
+                    <h3>Segunda opción</h3>
+                </div>
+            </div>
+            <div class="col-7">
+                <h6>Seleccionados</h6>
+                <p id="o1">Ninguno</p>
+                <p id="o2">Ninguno</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- JS Scripts-->
+<script src="scripts.js"></script>
