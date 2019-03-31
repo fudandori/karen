@@ -1,4 +1,5 @@
-var database = firebase.database();
+const database = firebase.database();
+let opt1, opt2;
 
 function writeUserData() {
 
@@ -17,11 +18,11 @@ const row = document.getElementById("row");
 
 function generateRadio(id, col) {
     const name = "name=color" + col.toString();
-    const idValue = id.toString() + col.toString();
+    const idValue = id.toString().replace(/ /g, "_") + col.toString();
 
     return '<div class="rad col-12" onclick="select(' + idValue + ')">'
         + '<input type="radio" name="' + name + '" id="' + idValue + '">'
-        + '<strong> ' + id.toString() + '</strong>'
+        + '<label> ' + id.toString() + '</label>'
         + '</div>';
 }
 
@@ -30,7 +31,15 @@ function select(input) {
 
         const id = input.id;
         const col = id.substring(id.length - 1);
-        const frameId = col === "1" ? "right" : "left";
+        const left = col === "1";
+        const frameId = left ? "right" : "left";
+        const resultId = left ? "o1" : "o2";
+
+        if (left) {
+            opt1 = shapeName(id);
+        } else {
+            opt2 = shapeName(id);
+        }
 
         document.getElementById(id).checked = true;
 
@@ -49,7 +58,11 @@ function select(input) {
 }
 
 function equal(id1, id2) {
-    return id1.substring(0, id1.length - 1) === id2.substring(0, id2.length - 1)
+    return shapeName(id1) === shapeName(id2);
+}
+
+function shapeName(name) {
+    return name.substring(0, name.length - 1).replace(/_/g, " ");
 }
 
 function deselect(id) {

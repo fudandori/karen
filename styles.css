@@ -1,7 +1,9 @@
 .frame {
-    border: 3px double black;
+    border: 3px solid #d4a54b;
     border-radius: 10px;
     padding: 10px;
+    background-color: rgba(41, 23, 0, 0.9);
+    color: white;
 }
 
 .pane {
@@ -11,8 +13,104 @@
 .rad {
     cursor: pointer;
     transition: visibility .5s, opacity .5s, height .5s;
+    border-radius: 5px;
 }
 
 .rad:hover {
-    background-color: aqua;
+    background-color: #876729;
+}
+
+#name {
+    margin: 10px;
+    text-align: center;
+}
+
+#name-input {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.button {
+    width: 150px;
+    border: 2px solid #d4a54b;
+    border-radius: 5px;
+    margin: 10px auto;
+    background-color: rgba(41, 23, 0, 0.9);
+    color: white;
+    cursor: pointer;
+    transition: background-color .5s ease-in, transform 0s linear, color .5s ease-in ;
+}
+
+.button:hover {
+    background-color: white;
+    color: rgba(41, 23, 0);
+}
+
+.button:active {
+    transform: translate(2px, 2px);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: url("bg.jpg") !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+/* Custom Radio Buttons */
+
+[type="radio"]:checked, [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:checked+label, [type="radio"]:not(:checked)+label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: white;
+}
+
+[type="radio"]:checked+label:before, [type="radio"]:not(:checked)+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
+    border-radius: 100%;
+    background: rgba(41, 23, 0, 0.9);
+}
+
+[type="radio"]:checked+label:after, [type="radio"]:not(:checked)+label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: white;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+label {
+    margin: 0 !important;
 }
