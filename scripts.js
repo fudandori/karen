@@ -1,17 +1,21 @@
 const database = firebase.database();
 let opt1, opt2;
 
-function writeUserData() {
+function send() {
 
-    const planet = document.getElementById("planet").value;
-    const craft = document.getElementById("craft").value;
+    if (!opt1 || !opt2) {
+        alert("Debes elegir 2 opciones");
+    } else {
 
-    database
-        .ref("data/starcraft/" + planet)
-        .set({
-            option1: +new Date(),
-            option2: +new Date()
-        }, () => console.log("SENT!!"));
+        const name = document.getElementById("name-input").value;
+
+        database
+            .ref("data/votes/" + name)
+            .set({
+                option1: opt1,
+                option2: opt2
+            }, ()=> window.location.replace("success.html"));
+    }
 }
 
 const row = document.getElementById("row");
@@ -33,7 +37,6 @@ function select(input) {
         const col = id.substring(id.length - 1);
         const left = col === "1";
         const frameId = left ? "right" : "left";
-        const resultId = left ? "o1" : "o2";
 
         if (left) {
             opt1 = shapeName(id);
@@ -63,10 +66,6 @@ function equal(id1, id2) {
 
 function shapeName(name) {
     return name.substring(0, name.length - 1).replace(/_/g, " ");
-}
-
-function deselect(id) {
-    console.log(id + ' deselected');
 }
 
 database
