@@ -69,7 +69,7 @@ function shapeName(name) {
 }
 
 database
-    .ref("data/colors/")
+    .ref("data/places/")
     .once("value", (s) => {
         const left = document.getElementById("left");
         const right = document.getElementById("right");

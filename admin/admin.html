@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Fudandori">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script src="db.js"></script>
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+            <div id="edit-box" class="col-10 col-md-6 row justify-content-center">
+                <input type="text" id="choice-input" class="col-10" placeholder="Nueva opción"
+                    onkeyup="keyHandler(event)">
+                <div class="w-100"></div>
+
+                <div class="col-6">
+                    <div id="create" class="button" onclick="send()">Añadir</div>
+                </div>
+                <div class="col-6">
+                    <div id="delete" class="button" onclick="reset()">Borrar todo</div>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+
+            <div id="list-container" class="col-10 col-md-6">
+                <ol id="list"></ol>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script src="admin.js"></script>
+
+</html>
