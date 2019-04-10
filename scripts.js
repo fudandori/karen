@@ -1,24 +1,24 @@
-const database = firebase.database();
 let opt1, opt2;
 
 function send() {
+    const name = document.getElementById("name-input").value;
 
     if (!opt1 || !opt2) {
         alert("Debes elegir 2 opciones");
+
+    } else if (name === '') {
+        alert("Debes introducir tu nombre");
     } else {
 
-        const name = document.getElementById("name-input").value;
 
         database
-            .ref("data/votes/" + name)
+            .ref(votesNode + name)
             .set({
                 option1: opt1,
                 option2: opt2
             }, ()=> window.location.replace("success.html"));
     }
 }
-
-const row = document.getElementById("row");
 
 function generateRadio(id, col) {
     const name = "name=color" + col.toString();
@@ -69,7 +69,7 @@ function shapeName(name) {
 }
 
 database
-    .ref("data/places/")
+    .ref(placesNode)
     .once("value", (s) => {
         const left = document.getElementById("left");
         const right = document.getElementById("right");

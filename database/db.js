@@ -1,4 +1,4 @@
-var config = {
+const config = {
     apiKey: "AIzaSyBbUi9-EkMpp-HbKDYz1FdMFmo91LmkLlM",
     authDomain: "karen-c3a48.firebaseapp.com",
     databaseURL: "https://karen-c3a48.firebaseio.com",
@@ -8,4 +8,7 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
 const database = firebase.database();
+const votesNode = "data/votes/";
+const placesNode = "data/places/";

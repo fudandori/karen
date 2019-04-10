@@ -1,7 +1,5 @@
-const places = "data/places/";
-
 database
-    .ref(places)
+    .ref(placesNode)
     .on("value", (s) => {
 
         const ol = document.getElementById('list');
@@ -17,27 +15,31 @@ database
 function send() {
 
     const input = document.getElementById("choice-input");
-
     const name = input.value;
 
     if (name.length > 0) {
+        if ((/(\w| )+/g).test(name)) {
 
-        const entry = {};
-        entry[name] = 1;
+            const entry = {};
+            entry[name] = 1;
 
-        database
-            .ref(places)
-            .update(entry);
+            database
+                .ref(placesNode)
+                .update(entry);
+
+            input.value = "";
+            input.focus();
+
+        } else {
+            alert("Sólo se permiten caracteres alfanuméricos");
+        }
     }
-
-    input.value = "";
-    input.focus();
 }
 
 function reset() {
     database
-        .ref(places)
-        .remove()
+        .ref(placesNode)
+        .remove();
 }
 
 function keyHandler(event) {
