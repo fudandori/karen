@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
+    <!-- BOOTSTRAP 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script src="../database/db.js"></script>
+</head>
+<html>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div id="telepizza">
+                <input type="radio" name="teleppizer" onclick="typeHandler('menu')"> Menú
+                <input type="radio" name="teleppizer" onclick="typeHandler('familiar')"> Familiar
+                <input type="radio" name="teleppizer" onclick="typeHandler('other')"> Otro
+            </div>
+        </div>
+
+        <div id="menu" class="col-6" style="background-color: aqua">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('pizza')"
+                    id="menu-pizza-radio">
+                <label class="form-check-label" for="menu-pizza-radio">Pizza</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('burger')"
+                    id="burger-pizza-radio">
+                <label class="form-check-label" for="burger-pizza-radio">Burger</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('sandwich')"
+                    id="sand-pizza-radio">
+                <label class="form-check-label" for="sand-pizza-radio">Sandwich</label>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <select id="menu-main" class="form-control" onchange="onMenumainChange()"></select>
+                </div>
+                <div class="col">
+                    <select id="menu-starters" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <select id="menu-drink" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div id="familiar" class="col-6" style="background-color:blueviolet"></div>
+        <div id="other" class="col-6" style="background-color:chartreuse"></div>
+    </div>
+</body>
+<script src="reserves.js"></script>
+
+</html>
