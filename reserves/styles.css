@@ -1,16 +1,42 @@
 #menu, #familiar, #other {
     height: 0;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity .5s ease;
     margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin-top: 1rem;
 }
 
-#menu-pizza, #menu-burger, #menu-sandwich {
-    visibility: collapse;
+#main {
+    padding-top: 1rem;
 }
 
-#menu {}
+#menu-selects, #two-ing {
+    margin-top: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
 
 #familiar {}
 
 #other {}
+
+.telepizza-button {
+    border: 2px solid black;
+    padding: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: border .5s ease, background-color .5s ease, color .5s ease;
+}
+
+.telepizza-button:hover, .telepizza-active {
+    border: 2px solid red;
+    color: black;
+    background-color: white;
+}

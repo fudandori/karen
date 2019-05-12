@@ -18,3 +18,4 @@ const pizza = telepizza + "pizza";
 const sandwich = telepizza + "sandwich";
 const starters = telepizza + "entrantes";
 const drinks = telepizza + "drink";
+const ingredients = telepizza + "ingredients";

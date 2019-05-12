@@ -14,34 +14,62 @@
 <html>
 
 <body>
-    <div class="container-fluid">
+    <div id="main" class="container-fluid">
 
-        <div class="row justify-content-center">
-            <div id="telepizza">
-                <input type="radio" name="teleppizer" onclick="typeHandler('menu')"> Menú
-                <input type="radio" name="teleppizer" onclick="typeHandler('familiar')"> Familiar
-                <input type="radio" name="teleppizer" onclick="typeHandler('other')"> Otro
+        <div id="telepizza" class="row justify-content-center">
+            <div class="col-3">
+                <div id="menu-button" class="telepizza-button" onclick="typeHandler('menu')"> Menú</div>
+            </div>
+            <div class="col-3">
+                <div id="familiar-button" class="telepizza-button" onclick="typeHandler('familiar')"> Familiar</div>
+            </div>
+            <div class="col-3">
+                <div id="other-button" class="telepizza-button" onclick="typeHandler('other')"> Otro</div>
             </div>
         </div>
 
-        <div id="menu" class="col-6" style="background-color: aqua">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('pizza')"
-                    id="menu-pizza-radio">
-                <label class="form-check-label" for="menu-pizza-radio">Pizza</label>
+        <div id="familiar" class="col-6">
+            <div class="form-row">
+
+                <div class="col">Pizza</div>
+                <div class="col">Bebida</div>
+
+                <div class="w-100"></div>
+
+                <div class="col">
+                    <select id="familiar-main" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <select id="familiar-drink" class="form-control"></select>
+                </div>
+
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('burger')"
-                    id="burger-pizza-radio">
-                <label class="form-check-label" for="burger-pizza-radio">Burger</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="menu" onclick="menuHandler('sandwich')"
-                    id="sand-pizza-radio">
-                <label class="form-check-label" for="sand-pizza-radio">Sandwich</label>
+        </div>
+
+        <div id="menu" class="col-10">
+
+            <div class="row justify-content-center">
+
+                <div class="col-3">
+                    <div id="menu-pizza" class="telepizza-button" onclick="menuHandler('pizza')">Pizza</div>
+                </div>
+                <div class="col-3">
+                    <div id="menu-burger" class="telepizza-button" onclick="menuHandler('burger')">Burger</div>
+                </div>
+                <div class="col-3">
+                    <div id="menu-sandwich" class="telepizza-button" onclick="menuHandler('sandwich')">Sandwich</div>
+                </div>
+
             </div>
 
-            <div class="form-row">
+            <div id="menu-selects" class="form-row">
+
+                <div class="col">Pizza</div>
+                <div class="col">Entrantes</div>
+                <div class="col">Bebida</div>
+
+                <div class="w-100"></div>
+
                 <div class="col">
                     <select id="menu-main" class="form-control" onchange="onMenumainChange()"></select>
                 </div>
@@ -52,9 +80,34 @@
                     <select id="menu-drink" class="form-control"></select>
                 </div>
             </div>
+
+
+            <div class="w-100"></div>
+
+
+            <div id="two-ing" class="form-row">
+
+                <div class="col-12">
+                    Ingredientes:
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col">
+                    <select id="ing-one" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <select id="ing-two" class="form-control"></select>
+                </div>
+            </div>
         </div>
-        <div id="familiar" class="col-6" style="background-color:blueviolet"></div>
-        <div id="other" class="col-6" style="background-color:chartreuse"></div>
+
+        <div id="other" class="col-6">
+            <div class="form-group">
+                <label for="comment">Describe tu elección:</label>
+                <textarea class="form-control" rows="3" id="comment"></textarea>
+            </div>
+        </div>
     </div>
 </body>
 <script src="reserves.js"></script>
