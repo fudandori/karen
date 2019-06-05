@@ -1,5 +1,18 @@
 let opt1, opt2;
 
+database
+    .ref(placesNode)
+    .once("value", (s) => {
+        const left = document.getElementById("left");
+        const right = document.getElementById("right");
+
+        s.forEach(e => {
+            left.innerHTML += generateRadio(e.key, 1);
+            right.innerHTML += generateRadio(e.key, 2);
+        });
+
+    });
+
 function send() {
     const name = document.getElementById("name-input").value;
 
@@ -68,15 +81,6 @@ function shapeName(name) {
     return name.substring(0, name.length - 1).replace(/_/g, " ");
 }
 
-database
-    .ref(placesNode)
-    .once("value", (s) => {
-        const left = document.getElementById("left");
-        const right = document.getElementById("right");
-
-        s.forEach(e => {
-            left.innerHTML += generateRadio(e.key, 1);
-            right.innerHTML += generateRadio(e.key, 2);
-        });
-
-    });
+function results() {
+    window.location.replace("results/index.html");
+}

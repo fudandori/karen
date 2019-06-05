@@ -8,15 +8,33 @@ const menuSandwich = document.getElementById("menu-sandwich");
 const menuStarters = document.getElementById("menu-starters");
 const menuDrink = document.getElementById("menu-drink");
 const familiarDrink = document.getElementById("familiar-drink");
+const familiarDrink2 = document.getElementById("familiar-drink-2");
 const familiarMain = document.getElementById("familiar-main");
 const menuMain = document.getElementById("menu-main");
 const twoIng = document.getElementById("two-ing");
 const ingOne = document.getElementById("ing-one");
 const ingTwo = document.getElementById("ing-two");
+const twoIngFamiliar = document.getElementById("two-ing-familiar");
+const ingOneFamiliar = document.getElementById("ing-one-familiar");
+const ingTwoFamiliar = document.getElementById("ing-two-familiar");
+const comment = document.getElementById("comment");
 const menuPizzaList = [];
 const menuBurgerList = [];
 const menuSandwichList = [];
 const telepizzActive = "telepizza-active";
+let selectedMenu = "none";
+let selectedType = "none";
+const veil = document.getElementById("veil");
+const inputName = document.getElementById("name");
+const saveButton = document.getElementById("save");
+const menuButton = document.getElementById("menu-send");
+const familiarButton = document.getElementById("familiar-send");
+const otherButton = document.getElementById("other-send");
+let drinkNo = 1;
+const radio = document.getElementById("customRadio2");
+const familiarDrinkLabel = document.getElementById("drink-label");
+
+saveButton.disabled = true;
 
 database
     .ref(pizza)
@@ -52,6 +70,8 @@ database
         for (const opt of options) {
             insertOption(ingOne, opt);
             insertOption(ingTwo, opt);
+            insertOption(ingOneFamiliar, opt);
+            insertOption(ingTwoFamiliar, opt);
         }
     });
 
@@ -68,64 +88,68 @@ database
         for (const opt of options) {
             insertOption(menuDrink, opt);
             insertOption(familiarDrink, opt);
+            insertOption(familiarDrink2, opt);
         }
     });
 
-function insertOption(select, option) {
-    const el = document.createElement("option");
-    el.innerHTML = option;
-    select.appendChild(el);
-}
-
 function typeHandler(type) {
 
-    switch (type) {
-        case "menu":
-            showMenu();
-            break;
-        case "familiar":
-            showFamiliar();
-            break;
-        case "other":
-            showOtro();
-            break;
+    if (selectedType !== type) {
+
+        removeStyles();
+
+        switch (type) {
+            case "menu":
+                showMenu();
+                break;
+
+            case "familiar":
+                showFamiliar();
+                selectedMenu = "none";
+                break;
+
+            case "other":
+                showOtro();
+                selectedMenu = "none";
+                break;
+        }
+
+        selectedType = type;
     }
 }
 
 function menuHandler(type) {
 
-    menuMain.innerHTML = "";
+    if (selectedMenu !== type) {
 
-    activateButton("menu-pizza", false);
-    activateButton("menu-burger", false);
-    activateButton("menu-sandwich", false);
-    activateButton("menu-" + type);
+        activateButton("menu-pizza", false);
+        activateButton("menu-burger", false);
+        activateButton("menu-sandwich", false);
+        activateButton("menu-" + type);
 
-    let array;
-    switch (type) {
-        case "pizza":
-            array = menuPizzaList;
-            break;
+        let array;
+        switch (type) {
+            case "pizza":
+                array = menuPizzaList;
+                break;
 
-        case "burger":
-            array = menuBurgerList;
-            break;
+            case "burger":
+                array = menuBurgerList;
+                break;
 
-        case "sandwich":
-            array = menuSandwichList;
-            break;
+            case "sandwich":
+                array = menuSandwichList;
+                break;
+        }
+
+        populateMenuMain(array);
+        onMenuMainChange();
+
+        show(menuSelects);
+        show(menuButton);
+
+        selectedMenu = type;
     }
-
-    for (const o of array) {
-        const el = document.createElement("option");
-        el.innerHTML = o;
-        menuMain.appendChild(el);
-    }
-
-    onMenumainChange();
-
-    menuSelects.style.visibility = "visible";
-    menuSelects.style.opacity = "1";
 }
 
 function activateButton(id, activate = true) {
@@ -141,60 +165,175 @@ function showMenu() {
     activateButton("familiar-button", false);
     activateButton("other-button", false);
 
-    familiar.style.opacity = "0";
-    familiar.style.height = "0";
-    familiar.style.visibility = "hidden";
+    activateButton("menu-pizza", false);
+    activateButton("menu-burger", false);
+    activateButton("menu-sandwich", false);
 
-    other.style.opacity = "0";
-    other.style.height = "0";
-    other.style.visibility = "hidden";
-
-    menu.style.opacity = "1";
-    menu.style.height = "auto";
-    menu.style.visibility = "visible";
+    show(menu);
 }
 
 
 function showFamiliar() {
 
-    activateButton("menu-button", false);
     activateButton("familiar-button");
+    activateButton("menu-button", false);
     activateButton("other-button", false);
 
-    menu.style.opacity = "0";
-    menu.style.height = "0";
-    menu.style.visibility = "hidden";
+    show(familiar);
+    show(familiarButton);
 
-    other.style.opacity = "0";
-    other.style.height = "0";
-    other.style.visibility = "hidden";
-
-    familiar.style.opacity = "1";
-    familiar.style.height = "auto";
-    familiar.style.visibility = "visible";
+    drinkNo = 1;
+    radio.click();
+    onFamiliarMainChange();
 }
 
 function showOtro() {
 
+    activateButton("other-button");
     activateButton("menu-button", false);
     activateButton("familiar-button", false);
-    activateButton("other-button");
 
-    menu.style.opacity = "0";
-    menu.style.height = "0";
-    menu.style.visibility = "hidden";
-
-    familiar.style.opacity = "0";
-    familiar.style.height = "0";
-    familiar.style.visibility = "hidden";
-
-    other.style.opacity = "1";
-    other.style.height = "auto";
-    other.style.visibility = "visible";
+    show(other);
+    show(otherButton);
 }
 
-function onMenumainChange() {
+function onMenuMainChange() {
     const speciality = menuMain.options[menuMain.selectedIndex].text !== "2 ingredientes";
-    twoIng.style.opacity = speciality ? "0" : "1";
-    twoIng.style.visibility = speciality ? "hidden" : "visible";
+    show(twoIng, !speciality);
+}
+
+function onFamiliarMainChange() {
+    const speciality = familiarMain.options[familiarMain.selectedIndex].text !== "2 ingredientes";
+    show(twoIngFamiliar, !speciality);
+}
+
+function show(element, show = true) {
+    element.style.opacity = show ? "1" : "0";
+    element.style.visibility = show ? "visible" : "hidden";
+}
+
+function removeStyles() {
+    document.querySelectorAll("[style]")
+        .forEach(el => el.removeAttribute("style"));
+}
+
+function insertOption(select, option) {
+    const el = document.createElement("option");
+    el.innerHTML = option;
+    select.appendChild(el);
+}
+
+function populateMenuMain(array) {
+    menuMain.innerHTML = "";
+    for (const o of array) {
+        const el = document.createElement("option");
+        el.innerHTML = o;
+        menuMain.appendChild(el);
+    }
+}
+
+function save() {
+
+    let data;
+
+    if (selectedType === "menu") {
+
+
+        const bebida = getComboText(menuDrink);
+        const entrantes = getComboText(menuStarters);
+        let principal = getComboText(menuMain);
+
+        if (selectedMenu === "pizza" && getComboText(menuMain) === "2 ingredientes") {
+            principal = "Pizza de " + getComboText(ingOne) + " y " + getComboText(ingTwo);
+        }
+
+        data = {
+            menu: {
+                main: principal,
+                drink: bebida,
+                starters: entrantes.replace(/ \(.*\)/g, '')
+            }
+        };
+
+    } else if (selectedType === "familiar") {
+
+        let bebida = getComboText(familiarDrink);
+
+        switch (drinkNo) {
+            case 0:
+                bebida = "";
+                break;
+            case 1:
+                bebida = getComboText(familiarDrink);
+                break;
+            case 2:
+                bebida = getComboText(familiarDrink) + " y " + getComboText(familiarDrink2);
+                break;
+        }
+
+        let pizza = getComboText(familiarMain);
+
+        if (getComboText(familiarMain) === "2 ingredientes") {
+            pizza = "Pizza de " + getComboText(ingOneFamiliar) + " y " + getComboText(ingTwoFamiliar);
+        }
+
+        data = {
+            familiar: {
+                main: pizza,
+                drink: bebida
+            }
+        };
+
+    } else if (selectedType === "other") {
+
+        const text = comment.value;
+
+        data = {
+            other: text
+        };
+    }
+
+    database
+        .ref(reserves + inputName.value)
+        .set(data);
+
+    showModal(false);
+}
+
+function getComboText(combo) {
+    return combo.options[combo.selectedIndex].text
+}
+
+function showModal(show = true) {
+    if (show) veil.classList.add("veil-active")
+    else veil.classList.remove("veil-active")
+}
+
+function popClick(event) {
+    event.stopPropagation();
+}
+
+function validate() {
+    saveButton.disabled = inputName.value.length === 0;
+}
+
+function noDrinks() {
+    drinkNo = 0;
+    show(familiarDrink, false);
+    show(familiarDrink2, false);
+    show(familiarDrinkLabel, false);
+}
+
+function oneDrink() {
+    drinkNo = 1;
+    show(familiarDrink);
+    show(familiarDrink2, false);
+    show(familiarDrinkLabel);
+}
+
+function twoDrinks() {
+    drinkNo = 2;
+    show(familiarDrink);
+    show(familiarDrink2);
+    show(familiarDrinkLabel);
 }

@@ -14,7 +14,7 @@
 <html>
 
 <body>
-    <div id="main" class="container-fluid">
+    <div id="container" class="container-fluid">
 
         <div id="telepizza" class="row justify-content-center">
             <div class="col-3">
@@ -31,19 +31,62 @@
         <div id="familiar" class="col-6">
             <div class="form-row">
 
+                <div class="col" id="drink-radios">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="radios"
+                            onclick="noDrinks()">
+                        <label class="custom-control-label" for="customRadio">Sin bebida</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="radios"
+                            onclick="oneDrink()">
+                        <label class="custom-control-label" for="customRadio2">Bebida para 1</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio3" name="radios"
+                            onclick="twoDrinks()">
+                        <label class="custom-control-label" for="customRadio3">Bebida para 2</label>
+                    </div>
+                </div>
+
+                <div class="w-100"></div>
+
                 <div class="col">Pizza</div>
-                <div class="col">Bebida</div>
+                <div class="col" id="drink-label">Bebida</div>
 
                 <div class="w-100"></div>
 
                 <div class="col">
-                    <select id="familiar-main" class="form-control"></select>
+                    <select id="familiar-main" class="form-control" onchange="onFamiliarMainChange()"></select>
                 </div>
                 <div class="col">
                     <select id="familiar-drink" class="form-control"></select>
+                    <select id="familiar-drink-2" class="form-control"></select>
                 </div>
 
             </div>
+
+            <div class="w-100"></div>
+
+            <div id="two-ing-familiar" class="form-row">
+
+                <div class="col-12">
+                    Ingredientes:
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col">
+                    <select id="ing-one-familiar" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <select id="ing-two-familiar" class="form-control"></select>
+                </div>
+            </div>
+
+
+            <button type="button" id="familiar-send" class="btn btn-primary" onclick="showModal()">Enviar</button>
+
         </div>
 
         <div id="menu" class="col-10">
@@ -71,7 +114,7 @@
                 <div class="w-100"></div>
 
                 <div class="col">
-                    <select id="menu-main" class="form-control" onchange="onMenumainChange()"></select>
+                    <select id="menu-main" class="form-control" onchange="onMenuMainChange()"></select>
                 </div>
                 <div class="col">
                     <select id="menu-starters" class="form-control"></select>
@@ -100,12 +143,28 @@
                     <select id="ing-two" class="form-control"></select>
                 </div>
             </div>
+            <div id="menu-send">
+                <button type="button" class="btn btn-primary" onclick="showModal()">Enviar</button>
+            </div>
         </div>
 
         <div id="other" class="col-6">
             <div class="form-group">
                 <label for="comment">Describe tu elección:</label>
                 <textarea class="form-control" rows="3" id="comment"></textarea>
+                <button type="button" id="other-send" class="btn btn-primary" onclick="showModal()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="veil" class="veil" onclick="showModal(false)">
+        <div id="pop" onclick="popClick(event)">
+            <div class="input-group">
+                <input id="name" onkeyup="validate()" type="text" class="form-control" placeholder="Introducir nombre">
+                <div class="input-group-append">
+                    <button id="save" class="btn btn-outline-secondary" type="button" onclick="save()">Enviar</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="showModal(false)">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
