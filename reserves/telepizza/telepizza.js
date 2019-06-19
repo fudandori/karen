@@ -1,96 +1,65 @@
-const menu = document.getElementById("menu");
-const menuSelects = document.getElementById("menu-selects");
-const familiar = document.getElementById("familiar");
-const other = document.getElementById("other");
-const menuPizza = document.getElementById("menu-pizza");
-const menuBurger = document.getElementById("menu-burger");
-const menuSandwich = document.getElementById("menu-sandwich");
-const menuStarters = document.getElementById("menu-starters");
-const menuDrink = document.getElementById("menu-drink");
-const familiarDrink = document.getElementById("familiar-drink");
-const familiarDrink2 = document.getElementById("familiar-drink-2");
-const familiarMain = document.getElementById("familiar-main");
-const menuMain = document.getElementById("menu-main");
-const twoIng = document.getElementById("two-ing");
-const ingOne = document.getElementById("ing-one");
-const ingTwo = document.getElementById("ing-two");
-const twoIngFamiliar = document.getElementById("two-ing-familiar");
-const ingOneFamiliar = document.getElementById("ing-one-familiar");
-const ingTwoFamiliar = document.getElementById("ing-two-familiar");
-const comment = document.getElementById("comment");
-const menuPizzaList = [];
-const menuBurgerList = [];
-const menuSandwichList = [];
-const telepizzActive = "telepizza-active";
-let selectedMenu = "none";
-let selectedType = "none";
-const veil = document.getElementById("veil");
-const inputName = document.getElementById("name");
-const saveButton = document.getElementById("save");
-const menuButton = document.getElementById("menu-send");
-const familiarButton = document.getElementById("familiar-send");
-const otherButton = document.getElementById("other-send");
-let drinkNo = 1;
-const radio = document.getElementById("customRadio2");
-const familiarDrinkLabel = document.getElementById("drink-label");
+function load() {
 
-saveButton.disabled = true;
+    initialize()
 
-database
-    .ref(pizza)
-    .once("value", s => {
-        s.forEach(e => {
-            menuPizzaList.push(e.key);
-            insertOption(familiarMain, e.key);
-        });
-    });
+    saveButton.disabled = true;
 
-database
-    .ref(burger)
-    .once("value", s => { s.forEach(e => { menuBurgerList.push(e.key) }) });
-
-database
-    .ref(sandwich)
-    .once("value", s => { s.forEach(e => { menuSandwichList.push(e.key) }) });
-
-database
-    .ref(starters)
-    .once("value", s => { s.forEach(e => { insertOption(menuStarters, e.key) }) });
-
-database
-    .ref(ingredients)
-    .once("value", s => {
-
-        const options = [];
-
-        s.forEach(e => {
-            options.push(e.key);
+    database
+        .ref(pizza)
+        .once("value", s => {
+            s.forEach(e => {
+                menuPizzaList.push(e.key);
+                insertOption(familiarMain, e.key);
+            });
         });
 
-        for (const opt of options) {
-            insertOption(ingOne, opt);
-            insertOption(ingTwo, opt);
-            insertOption(ingOneFamiliar, opt);
-            insertOption(ingTwoFamiliar, opt);
-        }
-    });
+    database
+        .ref(burger)
+        .once("value", s => { s.forEach(e => { menuBurgerList.push(e.key) }) });
 
-database
-    .ref(drinks)
-    .once("value", s => {
+    database
+        .ref(sandwich)
+        .once("value", s => { s.forEach(e => { menuSandwichList.push(e.key) }) });
 
-        const options = [];
+    database
+        .ref(starters)
+        .once("value", s => { s.forEach(e => { insertOption(menuStarters, e.key) }) });
 
-        s.forEach(e => {
-            options.push(e.key);
+    database
+        .ref(ingredients)
+        .once("value", s => {
+
+            const options = [];
+
+            s.forEach(e => {
+                options.push(e.key);
+            });
+
+            for (const opt of options) {
+                insertOption(ingOne, opt);
+                insertOption(ingTwo, opt);
+                insertOption(ingOneFamiliar, opt);
+                insertOption(ingTwoFamiliar, opt);
+            }
         });
 
-        for (const opt of options) {
-            insertOption(menuDrink, opt);
-            insertOption(familiarDrink, opt);
-            insertOption(familiarDrink2, opt);
-        }
-    });
+    database
+        .ref(drinks)
+        .once("value", s => {
+
+            const options = [];
+
+            s.forEach(e => {
+                options.push(e.key);
+            });
+
+            for (const opt of options) {
+                insertOption(menuDrink, opt);
+                insertOption(familiarDrink, opt);
+                insertOption(familiarDrink2, opt);
+            }
+        });
+}
 
 function typeHandler(type) {
 
@@ -182,7 +151,7 @@ function showFamiliar() {
     show(familiar);
     show(familiarButton);
 
-    drinkNo = 1;
+    drinkQty = 1;
     radio.click();
     onFamiliarMainChange();
 }
@@ -259,7 +228,7 @@ function save() {
 
         let bebida = getComboText(familiarDrink);
 
-        switch (drinkNo) {
+        switch (drinkQty) {
             case 0:
                 bebida = "";
                 break;
@@ -294,8 +263,8 @@ function save() {
     }
 
     database
-        .ref(reserves + inputName.value)
-        .set(data);
+        .ref(telepizzaReserves + inputName.value)
+        .set(data, () => window.location.href = "results.html");
 
     showModal(false);
 }
@@ -318,21 +287,21 @@ function validate() {
 }
 
 function noDrinks() {
-    drinkNo = 0;
+    drinkQty = 0;
     show(familiarDrink, false);
     show(familiarDrink2, false);
     show(familiarDrinkLabel, false);
 }
 
 function oneDrink() {
-    drinkNo = 1;
+    drinkQty = 1;
     show(familiarDrink);
     show(familiarDrink2, false);
     show(familiarDrinkLabel);
 }
 
 function twoDrinks() {
-    drinkNo = 2;
+    drinkQty = 2;
     show(familiarDrink);
     show(familiarDrink2);
     show(familiarDrinkLabel);

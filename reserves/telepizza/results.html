@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+    <script src="../../database/db.js"></script>
+
+    <!-- JS -->
+    <script src="results.js"></script>
+</head>
+
+<body onload="load()">
+
+    <!-- Menus -->
+    <table id="menu-table" class="table table-striped">
+
+        <thead class="thead-dark">
+            <tr>
+                <th class="table-title" colspan="4">Menús</th>
+            </tr>
+        </thead>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Principal</th>
+                <th scope="col">Entrantes</th>
+                <th scope="col">Bebida</th>
+            </tr>
+        </thead>
+        <tbody id="menus"></tbody>
+    </table>
+
+    <!-- Familiars -->
+    <table id="familiar-table" class="table table-striped">
+
+        <thead class="thead-dark">
+            <tr>
+                <th class="table-title" colspan="3">Familiares</th>
+            </tr>
+        </thead>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Pizza</th>
+                <th scope="col">Bebida</th>
+            </tr>
+        </thead>
+        <tbody id="familiars"></tbody>
+    </table>
+
+    <!-- Other -->
+    <table id="o-table" class="table table-striped">
+
+        <thead class="thead-dark">
+            <tr>
+                <th class="table-title" colspan="2">Otro</th>
+            </tr>
+        </thead>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Pedido</th>
+            </tr>
+        </thead>
+        <tbody id="other-table"></tbody>
+
+    </table>
+</body>
+</html>

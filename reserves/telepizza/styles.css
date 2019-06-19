@@ -67,7 +67,6 @@
 }
 
 #pop {
-    width: 50%;
     background-color: white;
     border-radius: 5px;
     text-align: center;
@@ -96,8 +95,6 @@
     background-color: white;
 }
 
-#tester {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
+.table-title {
+ text-align: center;   
 }

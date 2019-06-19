@@ -4,19 +4,24 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css" type="text/css">
 
-    <!-- BOOTSTRAP 4-->
+    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-    <script src="../database/db.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+    <script src="../../database/db.js"></script>
+
+    <!-- Script -->
+    <script src="vars.js"></script>
+    <script src="telepizza.js"></script>
 </head>
 <html>
 
-<body>
+<body onload="load()">
     <div id="container" class="container-fluid">
 
-        <div id="telepizza" class="row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-3">
                 <div id="menu-button" class="telepizza-button" onclick="typeHandler('menu')"> Menú</div>
             </div>
@@ -157,6 +162,7 @@
         </div>
     </div>
 
+    <!-- Pop up-->
     <div id="veil" class="veil" onclick="showModal(false)">
         <div id="pop" onclick="popClick(event)">
             <div class="input-group">
@@ -169,6 +175,4 @@
         </div>
     </div>
 </body>
-<script src="reserves.js"></script>
-
 </html>

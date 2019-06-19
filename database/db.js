@@ -12,6 +12,8 @@ firebase.initializeApp(config);
 const database = firebase.database();
 const votesNode = "data/votes/";
 const placesNode = "data/places/";
+
+// Telepizza
 const telepizza = "data/telepizza/";
 const burger = telepizza + "burger";
 const pizza = telepizza + "pizza";
@@ -19,4 +21,4 @@ const sandwich = telepizza + "sandwich";
 const starters = telepizza + "entrantes";
 const drinks = telepizza + "drink";
 const ingredients = telepizza + "ingredients";
-const reserves = "data/reserves/";
+const telepizzaReserves = "data/reserves/telepizza/";
