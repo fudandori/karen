@@ -10,7 +10,7 @@ v1.3
 
 v1.2  
 * Pop-ups de confirmación en el menú de admin
-* Opición para resetear los resultados de las votaciones
+* Opción para resetear los resultados de las votaciones
 * Opción para eliminar un destino individual
 
 v1.1  
