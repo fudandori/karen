@@ -2,7 +2,7 @@
 
 Pequeño proyecto para ayudar a mis compañeros a elegir el destino de la comida de los jueves
 
-v1.4 (en construcción)  
+v1.4
 * Reservas para Telepizza
 
 v1.3  
